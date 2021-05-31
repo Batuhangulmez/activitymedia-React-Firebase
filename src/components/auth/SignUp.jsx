@@ -4,7 +4,8 @@ import casemicelogo from "../../images/casemice.png"
 import { LoginContainer } from './LoginContainer'
 import {
     PasswordIcon,
-    EmailIcon
+    EmailIcon,
+    ProfilIcon
 } from "../../icons/Icon";
 
 
@@ -19,12 +20,16 @@ export const SignUp = () => {
                 <form className="flex flex-col">
                     <h2 className="text-3xl mb-5">Kayıt Ol</h2>
                     <label className="flex my-2 group">
+                        <div className=" mr-2 group-hover:text-primary-base  "><ProfilIcon /></div>
+                        <input type="text" placeholder="İsim" name="name" className="  bg-transparent w-full p-1 focus:outline-none border-b-2 border-gray-600  focus:border-primary-base" />
+                    </label>
+                    <label className="flex my-2 group">
                         <div className=" mr-2 group-hover:text-primary-base  "><EmailIcon /></div>
-                        <input type="text" placeholder="Email" name="name" className="  bg-transparent w-full p-1 focus:outline-none border-b-2 border-gray-600  focus:border-primary-base" />
+                        <input type="email" placeholder="Email" name="email" className="  bg-transparent w-full p-1 focus:outline-none border-b-2 border-gray-600  focus:border-primary-base" />
                     </label>
                     <label className="flex my-2 group">
                         <div className="mr-2 group-hover:text-primary-base"><PasswordIcon /></div>
-                        <input type="text" placeholder="Password" name="name" className="  bg-transparent w-full p-1 focus:outline-none border-b-2 border-gray-600 focus:border-primary-base " />
+                        <input type="password" placeholder="Password" name="password" className="  bg-transparent w-full p-1 focus:outline-none border-b-2 border-gray-600 focus:border-primary-base " />
                     </label>
                     <input className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded rounded-br-3xl" type="submit" value="Submit" />
                     <div className="mx-auto mt-4 ">Hesabın var mı?    <a href="/login" className="text-primary-base">Giriş Yap</a></div>
