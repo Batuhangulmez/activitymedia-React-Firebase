@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import casemicelogo from "../images/casemice.png"
 import SideLink from "../components/SideLink";
 import {
@@ -6,6 +6,7 @@ import {
     MessageIcon,
     ProfilIcon
 } from "../icons/Icon";
+import { UserBox } from '../components/UserBox';
 
 const sideLink = [
     {
@@ -23,6 +24,10 @@ const sideLink = [
 ];
 
 export const Sidebar = () => {
+
+
+
+
     return (
         <div className="flex flex-col justify-between w-72 px-2">
             <div>
@@ -32,13 +37,17 @@ export const Sidebar = () => {
                 <nav className="mb-4">
                     <ul>
                         {sideLink.map(({ name, icon }) => (
-                            <SideLink key={name} name={name} Icon={icon} />
+                            <SideLink
+                                key={name}
+                                name={name}
+                                Icon={icon}
+                            />
                         ))}
                     </ul>
                 </nav>
                 <button className="bg-primary-base hover:bg-primary-dark text-white shadow-lg rounded-full py-3 px-8 w-11/12 transform transition-colors duration-200 ">Tweet</button>
             </div>
-            <div>Alt Taraf</div>
+            <UserBox />
         </div>
     );
 };
