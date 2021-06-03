@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useFirebase } from "react-redux-firebase";
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import casemicelogo from "../../images/casemice.png"
@@ -10,16 +11,38 @@ import {
     ProfilIcon
 } from "../../icons/Icon";
 
-
-
 export const SignUp = () => {
-
     const { register, formState: { errors }, handleSubmit, setValue } = useForm();
+    const firebase = useFirebase();
+
+    const [fbErrors, setFbErrors] = useState([]);
+    const [submitting, setSubmiting] = useState(false);
 
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
+
+    const onSubmit = ({ username, email, password }) => {
+        setSubmiting(true);
+        setFbErrors([]);
+
+        const [first, last] = username.split(' ');
+        firebase.createUser(
+            { email, password },
+            {
+                name: username,
+                avatar: `https://ui-avatars.com/api/?name=${first}+${last}&background=random&color=fff`,
+            }
+        )
+            .then((user) => {
+                console.log(user);
+                setSubmiting(false);
+            })
+            .catch((error) => {
+                console.log([{ message: error.message }]);
+                setSubmiting(false);
+            })
+    };
+
+    const displayErrors = () => fbErrors.map((error, index) => <p key={index}>{error.message}</p>);
 
     return (
         <LoginContainer>
@@ -90,8 +113,13 @@ export const SignUp = () => {
                         </p>
 
                     </div>
-                    <input className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded rounded-br-3xl" type="submit" value="Submit" />
+                    <input type="submit" value="Submit" disabled={submitting} className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded rounded-br-3xl" />
                     <div className="mx-auto mt-4 ">Hesabın var mı?    <Link to="/login" className="text-primary-base">Giriş Yap</Link></div>
+                    <div className="flex flex-col items-center text-xs text-primary-base">
+                        fbErrors.length > 0 && (
+                            <p error>{displayErrors()} </p>
+                        )
+                        </div>
                 </form>
 
             </div>
