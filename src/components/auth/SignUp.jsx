@@ -14,7 +14,7 @@ import {
 
 export const SignUp = () => {
 
-    const { register, errors, handleSubmit, setValue } = useForm();
+    const { register, formState: { errors }, handleSubmit, setValue } = useForm();
 
 
     const onSubmit = (data) => {
@@ -35,7 +35,7 @@ export const SignUp = () => {
                         <div className=" mr-2 group-hover:text-primary-base  "><ProfilIcon /></div>
                         <input
                             type="text"
-                            placeholder="Kullanıcı adı"
+                            placeholder="İsim"
                             name="username"
                             className="  bg-transparent w-full p-1 focus:outline-none border-b-2 border-gray-600  focus:border-primary-base"
                             onChange={(event, { name, value }) => {
@@ -78,6 +78,18 @@ export const SignUp = () => {
                             })}
                         />
                     </label>
+                    <div className="flex flex-col items-center text-xs text-primary-base  ">
+                        <p>
+                            {errors.username && "Adınzı giriniz."}
+                        </p>
+                        <p>
+                            {errors.email && "Geçerli bir email adresi giriniz."}
+                        </p>
+                        <p>
+                            {errors.password && "Geçerli bir şifre girdiniz"}
+                        </p>
+
+                    </div>
                     <input className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded rounded-br-3xl" type="submit" value="Submit" />
                     <div className="mx-auto mt-4 ">Hesabın var mı?    <Link to="/login" className="text-primary-base">Giriş Yap</Link></div>
                 </form>

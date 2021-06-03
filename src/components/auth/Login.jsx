@@ -21,7 +21,6 @@ export const Login = () => {
 
     const onSubmit = (data, e) => {
         console.log(data);
-        console.log(errors);
     };
 
 
@@ -70,12 +69,12 @@ export const Login = () => {
                             })}
                         />
                     </label>
-                    <div className="flex flex-col items-center text-xs text-primary-base border-l-2 border-r-2 border-gray-400 rounded-xl ">
+                    <div className="flex flex-col items-center text-xs text-primary-base  ">
                         <p>
-                            {errors.email && "Email adresi hatalı"}
+                            {errors.email && "Email adresi hatalı."}
                         </p>
                         <p>
-                            {errors.password && "Şifrenizi yanlış girdiniz"}
+                            {errors.password && "Şifrenizi yanlış girdiniz."}
                         </p>
 
                     </div>
