@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useFirebase } from "react-redux-firebase";
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import casemicelogo from "../../images/casemice.png"
@@ -8,20 +9,40 @@ import {
     EmailIcon,
     ProfilIcon
 } from "../../icons/Icon";
+import { data } from 'autoprefixer';
 
 
 
 
 export const Login = () => {
-
-
     const { register, formState: { errors }, handleSubmit, setValue } = useForm();
+    const firebase = useFirebase();
+
+    const [fbErrors, setFbErrors] = useState([]);
+    const [submitting, setSubmiting] = useState(false);
 
 
 
-    const onSubmit = (data, e) => {
-        console.log(data);
+
+    const onSubmit = ({ email, password }, e) => {
+        setSubmiting(true);
+        setFbErrors([]);
+
+        firebase.login({
+            email, password
+        })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                setFbErrors([{ message: error.message }])
+            })
+            .finally(() => {
+                setSubmiting(false);
+            })
     };
+
+    const displayErrors = () => fbErrors.map((error, index) => <p key={index}>{error.message}</p>);
 
 
     return (
@@ -33,7 +54,7 @@ export const Login = () => {
 
 
 
-                <form className="flex flex-col"
+                <form className="flex flex-col w-80"
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <h2 className="mx-auto text-3xl mb-5">Giriş Yap</h2>
@@ -69,17 +90,20 @@ export const Login = () => {
                             })}
                         />
                     </label>
-                    <div className="flex flex-col items-center text-xs text-primary-base  ">
+                    <div className="flex flex-col justify-center items-center text-xs text-primary-base  ">
                         <p>
                             {errors.email && "Email adresi hatalı."}
                         </p>
                         <p>
                             {errors.password && "Şifrenizi yanlış girdiniz."}
                         </p>
-
+                        {
+                            fbErrors.length > 0 && (
+                                <p className=" max-w-xs">{displayErrors()} </p>
+                            )
+                        }
                     </div>
-
-                    <input className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded-md rounded-br-3xl" type="submit" value="Submit" />
+                    <input className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded-md rounded-br-3xl" type="Submit" value="Giriş Yap" disabled={submitting} />
                     <div className="mx-auto mt-4 ">Yeni misin?    <Link to="/signup" className="text-primary-base">Hesap Oluştur</Link></div>
                 </form>
 

@@ -34,10 +34,11 @@ export const SignUp = () => {
         )
             .then((user) => {
                 console.log(user);
-                setSubmiting(false);
             })
             .catch((error) => {
-                console.log([{ message: error.message }]);
+                setFbErrors([{ message: error.message }]);
+            })
+            .finally(() => {
                 setSubmiting(false);
             })
     };
@@ -50,7 +51,7 @@ export const SignUp = () => {
                 <div className="flex  bg-black mx-auto justify-center items-center">
                     <img src={casemicelogo} alt="Casemice Logo" className="absolute w-24 h-24 rounded-md bg-white p-2  -mt-11" />
                 </div>
-                <form className="flex flex-col"
+                <form className="flex flex-col w-80"
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <h2 className="text-3xl mb-5">Kayıt Ol</h2>
@@ -111,15 +112,15 @@ export const SignUp = () => {
                         <p>
                             {errors.password && "Geçerli bir şifre girdiniz"}
                         </p>
-
+                        {
+                            fbErrors.length > 0 && (
+                                <p >{displayErrors()} </p>
+                            )
+                        }
                     </div>
                     <input type="submit" value="Submit" disabled={submitting} className="mt-4 p-2  bg-primary-base hover:bg-primary-dark text-white hover:text-white border rounded-tl-3xl rounded rounded-br-3xl" />
                     <div className="mx-auto mt-4 ">Hesabın var mı?    <Link to="/login" className="text-primary-base">Giriş Yap</Link></div>
-                    <div className="flex flex-col items-center text-xs text-primary-base">
-                        fbErrors.length > 0 && (
-                            <p error>{displayErrors()} </p>
-                        )
-                        </div>
+
                 </form>
 
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import {
@@ -7,11 +7,12 @@ import {
 } from 'react-redux-firebase'
 import firebase from "./firebase";
 import store from "./store/store";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from "react-router-dom";
 import './index.css';
 import App from './App';
 import { SignUp } from './components/auth/SignUp';
 import { Login } from './components/auth/Login';
+import PrivateRoute from './components/auth/PrivateRoute';
 
 const rrfConfig = {
   userProfile: 'users'
@@ -23,15 +24,34 @@ const rrfProps = {
   dispatch: store.dispatch
 };
 
-const Root = () => (
+const Root = () => {
+  const history = useHistory();
 
-  <Switch>
-    <Route exact path="/" component={App} />
-    <Route path="/signup" component={SignUp} />
-    <Route path="/login" component={Login} />
-  </Switch>
 
-);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        history.push("/");
+      }
+      else {
+        history.push("/login");
+      }
+    });
+  }, []);
+
+  return (
+    <Switch>
+      <PrivateRoute exact path="/">
+        <App />
+      </PrivateRoute>
+      <Route path="/signup" component={SignUp} />
+      <Route path="/login" component={Login} />
+    </Switch>
+
+  );
+};
+
+
 
 
 
