@@ -1,10 +1,21 @@
 import React from 'react'
+import { StarIcon } from '../icons/Icon';
+import TextBox from '../components/TextBox';
+import { Divider } from '../components/Divider';
 
 export const Content = () => {
     return (
-        <main className="flex-1 bg-pink-200">
-            <h1>Content</h1>
-
+        <main className="flex-1 flex flex-col border-r border-l ">
+            <header className="sticky top-0 z-10 bg-white flex justify-between items-center p-4 border-b border-gray-extraligth">
+                <span className="font-bold text-xl">Home</span>
+                <StarIcon />
+            </header>
+            <div className="flex px-4 py-3 space-x-4">
+                <img className="w-11 h-11 rounded-full"
+                    src="https://pbs.twimg.com/profile_images/1147599003263148032/LbA5K3c4_400x400.jpg" alt="Profile" />
+                <TextBox />
+            </div>
+            <Divider />
         </main>
     );
 };
