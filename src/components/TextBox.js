@@ -10,12 +10,14 @@ const TextBox = () => {
     const [Content, setContent] = useState('')
 
     const sendPost = () => {
+
         firebase.push("Timeline", {
             name: profile.name,
             avatar: profile.avatar,
             Content: Content,
             timestamp: firebase.database.ServerValue.TIMESTAMP
         });
+        setContent('');
     };
 
     return (

@@ -17,9 +17,9 @@ export const PostList = () => {
         return "No Post..."
     }
     return (
-        <div>
+        <div className="" >
             {
-                Post.map(({ key, value }) => (
+                Post.reverse().map(({ key, value }) => (
                     <PostItem {...value} key={key} />
                 ))
             }
