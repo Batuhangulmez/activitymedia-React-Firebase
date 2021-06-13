@@ -2,6 +2,9 @@ import React from 'react'
 import { StarIcon } from '../icons/Icon';
 import TextBox from '../components/TextBox';
 import { Divider } from '../components/Divider';
+import { PostList } from '../components/PostList';
+
+
 
 export const Content = () => {
     return (
@@ -16,6 +19,7 @@ export const Content = () => {
                 <TextBox />
             </div>
             <Divider />
+            <PostList />
         </main>
     );
 };
