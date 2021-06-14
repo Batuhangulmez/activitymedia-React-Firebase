@@ -1,12 +1,29 @@
-import React from 'react'
+import { Avatar } from '@material-ui/core';
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useFirebase } from 'react-redux-firebase';
+
 
 export const PostItem = ({ name, avatar, Content, timestamp }) => {
     return (
-        <div className="flex" >
-            <h1>{Content}</h1>
-            <h1>{name}</h1>
-            <h1>{avatar}</h1>
-            <h1>{timestamp}</h1>
-        </div>
+        <article className="flex space-x-3 border-b border-gray-extraligth px-4 py-3" >
+            <img className="w-11 h-11 rounded-full" src={avatar} alt="Profile" />
+            <div className="flex-1">
+                <div className="flex  items-center text-sm">
+                    <span className="ml-2 font-bold">{name}</span>
+                    <span className="ml-2">
+                        {timestamp}
+                    </span>
+                </div>
+                <p className="mt-4 text-sm text-left">
+                    {Content}
+                </p>
+
+
+
+
+
+            </div>
+        </article>
     )
 };

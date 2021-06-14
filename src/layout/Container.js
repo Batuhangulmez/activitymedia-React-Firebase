@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Container = ({ children }) => {
     return (
-        <div className="flex min-h-screen max-w-7xl mx-auto border">{children}</div>
+        <div className="flex min-h-screen max-w-screen-xl mx-auto border">{children}</div>
     );
 };
 
