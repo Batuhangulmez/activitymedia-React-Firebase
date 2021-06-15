@@ -11,14 +11,25 @@ const TextBox = () => {
     const [Content, setContent] = useState('')
 
     const sendPost = () => {
+        const newPostKey = firebase.database().ref().child('posts').push().key;
 
-        firebase.push("Timeline", {
+        const postData = {
             userId: currentUser.uid,
             name: profile.name,
             avatar: profile.avatar,
             Content: Content,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
+            timestamp: firebase.database.ServerValue.TIMESTAMP,
+            star: 0
+        };
+
+        firebase.database().ref('Timeline/' + newPostKey).set({
+            postData
         });
+
+        firebase.database().ref('users/' + currentUser.uid + '/userPostKey/' + newPostKey).set({
+            postData
+        });
+
         setContent('');
     };
 
