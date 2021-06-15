@@ -29,7 +29,7 @@ export const Sidebar = () => {
 
 
     return (
-        <div className="sticky top-0 h-screen flex flex-col justify-between w-72 px-2">
+        <div className="sticky top-0 h-screen flex flex-col justify-between w-72 px-2 " style={{ flex: 1 }}>
             <div>
                 <div className="mb-1 mt-4 w-16 h-16 mr-auto ml-auto  ">
                     <img src={casemicelogo} alt="Casemice Logo" className="w-16 h-16 transform hover:scale-125 transition duration-500" />

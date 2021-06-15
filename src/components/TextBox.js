@@ -7,11 +7,13 @@ import { ImageIcon, PaperclipIcon } from '../icons/Icon';
 const TextBox = () => {
     const firebase = useFirebase();
     const profile = useSelector(state => state.firebase.profile);
+    const currentUser = useSelector(state => state.firebase.auth);
     const [Content, setContent] = useState('')
 
     const sendPost = () => {
 
         firebase.push("Timeline", {
+            userId: currentUser.uid,
             name: profile.name,
             avatar: profile.avatar,
             Content: Content,
@@ -23,10 +25,13 @@ const TextBox = () => {
     return (
         <div className="flex flex-col mt-2  px-2 flex-1">
             <textarea
-                className="w-full text-xl placeholder-gray-dark outline-none overflow-hidden resize-none bg-transparent "
+                className="w-full text-xl placeholder-gray-dark outline-none overflow-auto resize-none bg-transparent "
                 placeholder="Lorem impuls"
                 onChange={e => setContent(e.target.value)}
                 value={Content}
+                maxLength="255"
+                rows="3"
+
             />
             <div className="flex items-center justify-between">
                 <div className="flex -ml-3">

@@ -8,7 +8,7 @@ import { PostList } from '../components/PostList';
 
 export const Content = () => {
     return (
-        <main className="flex-1 flex flex-col border-r border-l ">
+        <main className=" flex flex-col border-r border-l " style={{ flex: 3 }}>
             <header className="sticky top-0 z-10 bg-white flex justify-between items-center p-4 border-b border-gray-extraligth">
                 <span className="font-bold text-xl">Home</span>
                 <StarIcon />

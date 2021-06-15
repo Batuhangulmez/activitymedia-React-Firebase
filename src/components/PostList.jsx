@@ -17,7 +17,7 @@ export const PostList = () => {
         return "No Post..."
     }
     return (
-        <div className=" max-w-max" >
+        <div className=" max-w-max " >
             {
                 Post.reverse().map(({ key, value }) => (
                     <PostItem {...value} key={key} />
