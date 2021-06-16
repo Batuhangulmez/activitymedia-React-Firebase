@@ -19,7 +19,8 @@ const TextBox = () => {
             avatar: profile.avatar,
             Content: Content,
             timestamp: firebase.database.ServerValue.TIMESTAMP,
-            star: 0
+            star: 0,
+            postKey: newPostKey
         };
 
         firebase.database().ref('Timeline/' + newPostKey).set({

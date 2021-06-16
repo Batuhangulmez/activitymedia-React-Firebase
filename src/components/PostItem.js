@@ -2,7 +2,7 @@ import { Avatar } from '@material-ui/core';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
-import { HeartIcon } from '../icons/Icon';
+import { HeartIcon, LogoutIcon } from '../icons/Icon';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -13,8 +13,15 @@ const formatDate = (dateString) => {
 
 
 
-export const PostItem = ({ postData }) => {
 
+
+export const PostItem = ({ postData }) => {
+    const firebase = useFirebase();
+    const rootRef = firebase.database().ref('Timeline');
+
+    const deletepost = () => {
+        firebase.database().ref('/Timeline').child(postData.postKey).remove();
+    };
 
     return (
         <article className="flex space-x-3 border-b border-gray-extraligth px-4 pt-3 pb-2" >
@@ -25,6 +32,9 @@ export const PostItem = ({ postData }) => {
                     <span className="ml-2">
                         {formatDate(postData.timestamp)}
                     </span>
+                    <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
+                        <LogoutIcon />
+                    </div>
                 </div>
                 <p className="mt-4 text-sm text-left ">
                     {postData.Content}
