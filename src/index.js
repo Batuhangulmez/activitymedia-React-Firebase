@@ -14,6 +14,7 @@ import { SignUp } from './components/auth/SignUp';
 import { Login } from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 
+
 const rrfConfig = {
   userProfile: 'users'
 };
@@ -46,6 +47,7 @@ const Root = () => {
       </PrivateRoute>
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={Login} />
+
     </Switch>
 
   );

@@ -7,8 +7,11 @@ import { PostItem } from './PostItem';
 
 export const PostList = () => {
     useFirebaseConnect([{ path: "Timeline" }])
-
     const Post = useSelector((state) => state.firebase.ordered.Timeline);
+
+
+
+
 
     if (!isLoaded(Post)) {
         return "Loading Post..."

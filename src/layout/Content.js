@@ -5,7 +5,6 @@ import { Divider } from '../components/Divider';
 import { PostList } from '../components/PostList';
 
 
-
 export const Content = () => {
     return (
         <main className=" flex flex-col border-r border-l " style={{ flex: 3 }}>
@@ -23,5 +22,6 @@ export const Content = () => {
         </main>
     );
 };
+
 
 export default Content;

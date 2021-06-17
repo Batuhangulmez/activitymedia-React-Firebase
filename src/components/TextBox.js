@@ -27,7 +27,7 @@ const TextBox = () => {
             postData
         });
 
-        firebase.database().ref('users/' + currentUser.uid + '/userPostKey/' + newPostKey).set({
+        firebase.database().ref('users/' + currentUser.uid + '/userPostKey/' + newPostKey + '/').set({
             postData
         });
 

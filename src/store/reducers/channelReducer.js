@@ -2,7 +2,7 @@ import * as types from "../actions/types";
 
 
 const initialState = {
-    currentChannel: null,
+    currentChannel: "Home",
 };
 
 export default (state = initialState, action) => {

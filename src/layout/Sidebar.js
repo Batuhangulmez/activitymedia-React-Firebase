@@ -12,14 +12,17 @@ import { UserBox } from '../components/UserBox';
 
 const sideLink = [
     {
+        ıd: '/',
         name: 'Home',
         icon: HomeIcon,
     },
     {
+        ıd: '/Messages',
         name: 'Messages',
         icon: MessageIcon,
     },
     {
+        ıd: '/Profile',
         name: 'Profile',
         icon: ProfilIcon,
     },
@@ -27,6 +30,7 @@ const sideLink = [
 
 export const Sidebar = () => {
     const dispatch = useDispatch();
+    const currentChannel = useSelector((state) => state.channels.currentChannel);
 
 
     const setActiveChannel = (channel) => {
@@ -47,6 +51,7 @@ export const Sidebar = () => {
                         {sideLink.map(({ name, icon }) => (
                             <div onClick={() => setActiveChannel({ name })}>
                                 <SideLink
+
                                     key={name}
                                     name={name}
                                     Icon={icon}
