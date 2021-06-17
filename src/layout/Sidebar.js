@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import casemicelogo from "../images/casemice.png"
 import SideLink from "../components/SideLink";
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrnetChannel } from '../store/actions/channel';
 import {
     HomeIcon,
     MessageIcon,
@@ -24,6 +26,12 @@ const sideLink = [
 ];
 
 export const Sidebar = () => {
+    const dispatch = useDispatch();
+
+
+    const setActiveChannel = (channel) => {
+        dispatch(setCurrnetChannel(channel));
+    };
 
 
 
@@ -37,11 +45,14 @@ export const Sidebar = () => {
                 <nav className="mb-4">
                     <ul>
                         {sideLink.map(({ name, icon }) => (
-                            <SideLink
-                                key={name}
-                                name={name}
-                                Icon={icon}
-                            />
+                            <div onClick={() => setActiveChannel({ name })}>
+                                <SideLink
+                                    key={name}
+                                    name={name}
+                                    Icon={icon}
+                                />
+                            </div>
+
                         ))}
                     </ul>
                 </nav>
