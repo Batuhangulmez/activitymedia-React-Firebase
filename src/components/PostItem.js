@@ -19,9 +19,20 @@ export const PostItem = ({ postData }) => {
     const firebase = useFirebase();
     const rootRef = firebase.database().ref('Timeline');
 
-    const deletepost = () => {
-        firebase.database().ref('/Timeline').child(postData.postKey).remove();
+
+    const sendStar = () => {
+        console.log(postData.star.push(postData.userId))
+        console.log(postData.star)
+        const newData = {
+            star: postData.star
+        };
+        rootRef.child(postData.postKey).child('postData').update(newData)
+
     };
+
+
+
+
 
     return (
         <article className="flex space-x-3 border-b border-gray-extraligth px-4 pt-3 pb-2" >
@@ -32,16 +43,14 @@ export const PostItem = ({ postData }) => {
                     <span className="ml-2">
                         {formatDate(postData.timestamp)}
                     </span>
-                    <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
-                        <LogoutIcon />
-                    </div>
+
                 </div>
                 <p className="mt-4 text-sm text-left ">
                     {postData.Content}
                 </p>
-                <div className="mt-1">
-                    <IconButton size="small">
-                        <Badge badgeContent={postData.star} color="secondary">
+                <div className="mt-2">
+                    <IconButton size="small" onClick={sendStar}>
+                        <Badge badgeContent={postData.star.length - 1} color="secondary">
                             <HeartIcon />
                         </Badge>
                     </IconButton>

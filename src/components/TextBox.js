@@ -8,7 +8,8 @@ const TextBox = () => {
     const firebase = useFirebase();
     const profile = useSelector(state => state.firebase.profile);
     const currentUser = useSelector(state => state.firebase.auth);
-    const [Content, setContent] = useState('')
+    const [Content, setContent] = useState('');
+    const [Star, setStar] = useState([0]);
 
     const sendPost = () => {
         const newPostKey = firebase.database().ref().child('posts').push().key;
@@ -19,7 +20,7 @@ const TextBox = () => {
             avatar: profile.avatar,
             Content: Content,
             timestamp: firebase.database.ServerValue.TIMESTAMP,
-            star: 0,
+            star: Star,
             postKey: newPostKey
         };
 

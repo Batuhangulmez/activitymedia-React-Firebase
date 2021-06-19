@@ -15,6 +15,7 @@ const App = () => {
 
   return (
     <Container>
+
       <Sidebar />
       {currentChannel == "Home" ? <Content /> : currentChannel.name == "Home" ? <Content /> : <ProfileContent />}
       <Widgets />

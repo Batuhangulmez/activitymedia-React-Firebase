@@ -17,12 +17,12 @@ const formatDate = (dateString) => {
 
 
 export const ProfilePostItem = ({ postData }) => {
-    console.log(postData);
     const firebase = useFirebase();
     const rootRef = firebase.database().ref('Timeline');
 
     const deletepost = () => {
         firebase.database().ref('/Timeline').child(postData.postKey).remove();
+        firebase.database().ref('users/' + postData.userId + '/userPostKey/').child(postData.postKey).remove();
     };
 
     return (
@@ -43,7 +43,7 @@ export const ProfilePostItem = ({ postData }) => {
                 </p>
                 <div className="mt-1">
                     <IconButton size="small">
-                        <Badge badgeContent={postData.star} color="secondary">
+                        <Badge badgeContent={postData.star.length - 1} color="secondary">
                             <HeartIcon />
                         </Badge>
                     </IconButton>
