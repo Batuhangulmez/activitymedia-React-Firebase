@@ -15,22 +15,21 @@ export const ProfilePostList = () => {
 
 
     //
-    const key = Object.entries(Post).reverse()
+
+    let key = Post
 
 
-    if (!isLoaded(Post)) {
-        return "Loading Post..."
-    }
-    if (isEmpty(Post)) {
+    if (isEmpty(key)) {
         return "No Post..."
     }
     return (
-        <div className=" max-w-max " >
+        < div className=" max-w-max " >
             {
+                key = Object.entries(Post).reverse(),
                 key.map((key, index) => (
                     <ProfilePostItem {...key[1]} key={key} />
                 ))
             }
-        </div>
+        </div >
     )
 };

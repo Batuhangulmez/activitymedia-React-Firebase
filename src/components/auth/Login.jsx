@@ -32,7 +32,7 @@ export const Login = () => {
             email, password
         })
             .then((data) => {
-                console.log(data);
+
             })
             .catch((error) => {
                 setFbErrors([{ message: error.message }])

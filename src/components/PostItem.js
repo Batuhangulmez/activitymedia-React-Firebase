@@ -17,18 +17,54 @@ const formatDate = (dateString) => {
 
 export const PostItem = ({ postData }) => {
     const firebase = useFirebase();
-    const rootRef = firebase.database().ref('Timeline');
+    const currentUserUid = useSelector(state => state.firebase.auth.uid);
+    const rootRef = firebase.database().ref('Timeline/');
+    const starRef = firebase.database().ref('Timeline/' + postData.postKey + '/postData/star');
 
+    //    postData.star.push(postData.userId)
+
+    let arry = []
+    /*  
+   starRef.on('value', (snapshot) => {
+        console.log("1", snapshot.val())
+        for (let i = 0; i < snapshot.val().length; i++) {
+            if (currentUserUid == snapshot.val()[i]) {
+                console.log("i", i)
+                console.log("val", snapshot.val()[i])
+                console.log("ch,", starRef.child(i))
+            }
+        }
+    });
+       */
+    /*  starRef.on('value', (snapshot) => {
+          snapshot.val().map(index => arry.push(index))
+  
+      })
+      */
+    console.log(postData.star)
 
     const sendStar = () => {
-        console.log(postData.star.push(postData.userId))
-        console.log(postData.star)
+        let controlNum = false;
+        //  starRef.child(i).remove()
+        for (let i = 0; i < 10; i++) {
+            if (currentUserUid === postData.star[i]) {
+                postData.star.splice(i, 1)
+                controlNum = true;
+            }
+        }
+
+        if (controlNum === false) {
+
+
+            postData.star.push(currentUserUid)
+
+
+        }
         const newData = {
             star: postData.star
         };
-        rootRef.child(postData.postKey).child('postData').update(newData)
-
-    };
+        rootRef.child(postData.postKey).child('postData').update(newData);
+    }
 
 
 

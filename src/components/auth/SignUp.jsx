@@ -33,7 +33,7 @@ export const SignUp = () => {
             }
         )
             .then((user) => {
-                console.log(user);
+
             })
             .catch((error) => {
                 setFbErrors([{ message: error.message }]);
