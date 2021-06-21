@@ -8,6 +8,7 @@ import { LogoutIcon } from '../icons/Icon'
 export const UserBox = () => {
     const firebase = useFirebase();
     const profile = useSelector((state) => state.firebase.profile);
+    const email = useSelector((state) => state.firebase.auth.email);
 
     const signOut = () => {
         firebase.logout();
@@ -20,7 +21,7 @@ export const UserBox = () => {
                 src="https://pbs.twimg.com/profile_images/1147599003263148032/LbA5K3c4_400x400.jpg" alt="Profile" />
             <div className="flex flex-col ">
                 <span className="font-bold text-sm capitalize ">{profile.name}</span>
-                <span className="text-xs text-gray-dark">@Batuhanngulmez</span>
+                <span className="text-xs text-gray-dark">Ünvan</span>
             </div>
             <div className="flex space-x-1" onClick={() => signOut()} >
                 <LogoutIcon />

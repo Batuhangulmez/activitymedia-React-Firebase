@@ -23,7 +23,6 @@ export const PostItem = ({ postData }) => {
 
     //    postData.star.push(postData.userId)
 
-    let arry = []
     /*  
    starRef.on('value', (snapshot) => {
         console.log("1", snapshot.val())
@@ -46,7 +45,7 @@ export const PostItem = ({ postData }) => {
     const sendStar = () => {
         let controlNum = false;
         //  starRef.child(i).remove()
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < postData.star.length; i++) {
             if (currentUserUid === postData.star[i]) {
                 postData.star.splice(i, 1)
                 controlNum = true;
@@ -64,6 +63,7 @@ export const PostItem = ({ postData }) => {
             star: postData.star
         };
         rootRef.child(postData.postKey).child('postData').update(newData);
+        firebase.database().ref('users/' + postData.userId + '/userPostKey/').child(postData.postKey).child('postData').update(newData);
     }
 
 

@@ -19,11 +19,39 @@ const formatDate = (dateString) => {
 export const ProfilePostItem = ({ postData }) => {
     const firebase = useFirebase();
     const rootRef = firebase.database().ref('Timeline');
+    const currentUserUid = useSelector(state => state.firebase.auth.uid);
+
 
     const deletepost = () => {
         firebase.database().ref('/Timeline').child(postData.postKey).remove();
         firebase.database().ref('users/' + postData.userId + '/userPostKey/').child(postData.postKey).remove();
     };
+
+    console.log(postData.star)
+    const sendStar = () => {
+        let controlNum = false;
+        //  starRef.child(i).remove()
+        for (let i = 0; i < postData.star.length; i++) {
+            if (currentUserUid === postData.star[i]) {
+                postData.star.splice(i, 1)
+                controlNum = true;
+            }
+        }
+
+        if (controlNum === false) {
+
+
+            postData.star.push(currentUserUid)
+
+
+        }
+        const newData = {
+            star: postData.star
+        };
+        rootRef.child(postData.postKey).child('postData').update(newData);
+        firebase.database().ref('users/' + postData.userId + '/userPostKey/').child(postData.postKey).child('postData').update(newData);
+    }
+
 
     return (
         <article className="flex space-x-3 border-b border-gray-extraligth px-4 pt-3 pb-2" >
@@ -42,7 +70,7 @@ export const ProfilePostItem = ({ postData }) => {
                     {postData.Content}
                 </p>
                 <div className="mt-1">
-                    <IconButton size="small">
+                    <IconButton size="small" onClick={sendStar}>
                         <Badge badgeContent={postData.star.length - 1} color="secondary">
                             <HeartIcon />
                         </Badge>

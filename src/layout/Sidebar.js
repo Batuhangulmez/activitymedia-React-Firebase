@@ -42,7 +42,7 @@ export const Sidebar = () => {
 
     return (
         <div className="sticky top-0 h-screen flex flex-col justify-between w-72 px-2 " style={{ flex: 1 }}>
-            <div>
+            <div >
                 <div className="mb-1 mt-4 w-16 h-16 mr-auto ml-auto  ">
                     <img src={casemicelogo} alt="Casemice Logo" className="w-16 h-16 transform hover:scale-125 transition duration-500" />
                 </div>
@@ -61,7 +61,9 @@ export const Sidebar = () => {
                         ))}
                     </ul>
                 </nav>
-                <button className="bg-primary-base hover:bg-primary-dark text-white shadow-lg rounded-full py-3 px-8 w-11/12 transform transition-colors duration-200 ">Tweet</button>
+                <div className="flex justify-center">
+                    <button className="bg-primary-base hover:bg-primary-dark text-white shadow-lg rounded-full py-3 px-8 w-11/12 transform transition-colors duration-200">Gönderi Yaz</button>
+                </div>
             </div>
             <UserBox />
         </div>
