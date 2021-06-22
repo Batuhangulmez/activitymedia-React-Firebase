@@ -19,7 +19,6 @@ export const PostItem = ({ postData }) => {
     const firebase = useFirebase();
     const currentUserUid = useSelector(state => state.firebase.auth.uid);
     const rootRef = firebase.database().ref('Timeline/');
-    const starRef = firebase.database().ref('Timeline/' + postData.postKey + '/postData/star');
 
     //    postData.star.push(postData.userId)
 

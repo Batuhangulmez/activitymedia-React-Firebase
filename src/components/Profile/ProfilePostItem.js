@@ -27,7 +27,6 @@ export const ProfilePostItem = ({ postData }) => {
         firebase.database().ref('users/' + postData.userId + '/userPostKey/').child(postData.postKey).remove();
     };
 
-    console.log(postData.star)
     const sendStar = () => {
         let controlNum = false;
         //  starRef.child(i).remove()
@@ -69,7 +68,7 @@ export const ProfilePostItem = ({ postData }) => {
                 <p className="mt-4 text-sm text-left ">
                     {postData.Content}
                 </p>
-                <div className="mt-1">
+                <div className="mt-2">
                     <IconButton size="small" onClick={sendStar}>
                         <Badge badgeContent={postData.star.length - 1} color="secondary">
                             <HeartIcon />

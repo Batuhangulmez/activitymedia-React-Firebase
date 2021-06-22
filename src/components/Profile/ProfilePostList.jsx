@@ -18,7 +18,6 @@ export const ProfilePostList = () => {
 
     let key = Post
 
-    console.log(key)
     if (isEmpty(key)) {
         return "No Post..."
     }
