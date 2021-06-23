@@ -14,7 +14,7 @@ export const ProfilePostList = () => {
 
 
 
-    //
+
 
     let key = Post
 
@@ -22,7 +22,7 @@ export const ProfilePostList = () => {
         return "No Post..."
     }
     return (
-        < div className=" max-w-max " >
+        < div className=" max-w-max ">
             {
                 key = Object.entries(Post),
                 key.reverse().map((key, index) => (

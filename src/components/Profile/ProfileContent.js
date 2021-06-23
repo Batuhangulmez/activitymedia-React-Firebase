@@ -154,7 +154,7 @@ export const ProfileContent = () => {
                 open={successful}
                 autoHideDuration={6000}
                 onClose={handleClose}
-                message="Profil Bilgileri Kayır Edildi"
+                message="Profil Bilgileri Kayıt Edildi"
             />
 
         </main>

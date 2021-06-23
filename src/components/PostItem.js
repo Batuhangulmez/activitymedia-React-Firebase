@@ -20,27 +20,6 @@ export const PostItem = ({ postData }) => {
     const currentUserUid = useSelector(state => state.firebase.auth.uid);
     const rootRef = firebase.database().ref('Timeline/');
 
-    //    postData.star.push(postData.userId)
-
-    /*  
-   starRef.on('value', (snapshot) => {
-        console.log("1", snapshot.val())
-        for (let i = 0; i < snapshot.val().length; i++) {
-            if (currentUserUid == snapshot.val()[i]) {
-                console.log("i", i)
-                console.log("val", snapshot.val()[i])
-                console.log("ch,", starRef.child(i))
-            }
-        }
-    });
-       */
-    /*  starRef.on('value', (snapshot) => {
-          snapshot.val().map(index => arry.push(index))
-  
-      })
-      */
-    console.log(postData.star)
-
     const sendStar = () => {
         let controlNum = false;
         //  starRef.child(i).remove()
@@ -70,27 +49,30 @@ export const PostItem = ({ postData }) => {
 
 
     return (
-        <article className="flex space-x-3 border-b border-gray-extraligth px-4 pt-3 pb-2" >
-            <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
-            <div className="flex-1">
-                <div className="flex  items-center text-sm">
-                    <span className="ml-2 font-bold capitalize">{postData.name}</span>
-                    <span className="ml-2">
-                        {formatDate(postData.timestamp)}
-                    </span>
+        <section className="border-b border-gray-extraligth ">
+            <article className="flex space-x-3 px-4 pt-3 pb-2" >
+                <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
+                <div className="flex-1">
+                    <div className="flex  items-center text-sm">
+                        <span className="ml-2 font-bold capitalize">{postData.name}</span>
+                        <span className="ml-2">
+                            {formatDate(postData.timestamp)}
+                        </span>
+
+                    </div>
+                    <p className="mt-4 text-sm text-left ">
+                        {postData.Content}
+                    </p>
 
                 </div>
-                <p className="mt-4 text-sm text-left ">
-                    {postData.Content}
-                </p>
-                <div className="mt-2">
-                    <IconButton size="small" onClick={sendStar}>
-                        <Badge badgeContent={postData.star.length - 1} color="secondary">
-                            <HeartIcon />
-                        </Badge>
-                    </IconButton>
-                </div>
+            </article >
+            <div className="flex justify-evenly">
+                <IconButton size="small" onClick={sendStar}>
+                    <Badge badgeContent={postData.star.length - 1} color="secondary">
+                        <HeartIcon />
+                    </Badge>
+                </IconButton>
             </div>
-        </article >
+        </section>
     )
 };

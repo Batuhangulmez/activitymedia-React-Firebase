@@ -53,29 +53,32 @@ export const ProfilePostItem = ({ postData }) => {
 
 
     return (
-        <article className="flex space-x-3 border-b border-gray-extraligth px-4 pt-3 pb-2" >
-            <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
-            <div className="flex-1">
-                <div className="flex  items-center text-sm">
-                    <span className="ml-2 font-bold capitalize">{postData.name}</span>
-                    <span className="ml-2">
-                        {formatDate(postData.timestamp)}
-                    </span>
-                    <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
-                        <LogoutIcon />
+        <section className="border-b border-gray-extraligth ">
+            <article className="flex space-x-3  px-4 pt-3 pb-2" >
+                <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
+                <div className="flex-1">
+                    <div className="flex  items-center text-sm">
+                        <span className="ml-2 font-bold capitalize">{postData.name}</span>
+                        <span className="ml-2">
+                            {formatDate(postData.timestamp)}
+                        </span>
+                        <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
+                            <LogoutIcon />
+                        </div>
                     </div>
+                    <p className="mt-4 text-sm text-left ">
+                        {postData.Content}
+                    </p>
                 </div>
-                <p className="mt-4 text-sm text-left ">
-                    {postData.Content}
-                </p>
-                <div className="mt-2">
-                    <IconButton size="small" onClick={sendStar}>
-                        <Badge badgeContent={postData.star.length - 1} color="secondary">
-                            <HeartIcon />
-                        </Badge>
-                    </IconButton>
-                </div>
+            </article >
+            <div className="flex justify-evenly">
+                <IconButton size="small" onClick={sendStar}>
+                    <Badge badgeContent={postData.star.length - 1} color="secondary">
+                        <HeartIcon />
+                    </Badge>
+                </IconButton>
+
             </div>
-        </article >
+        </section>
     )
 };
