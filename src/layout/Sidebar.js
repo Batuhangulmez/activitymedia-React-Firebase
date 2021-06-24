@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import casemicelogo from "../images/casemice.png"
 import SideLink from "../components/SideLink";
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrnetChannel } from '../store/actions/channel';
+import { setCurrentChannel } from '../store/actions/channel';
 import {
     HomeIcon,
     MessageIcon,
@@ -34,7 +34,7 @@ export const Sidebar = () => {
 
 
     const setActiveChannel = (channel) => {
-        dispatch(setCurrnetChannel(channel));
+        dispatch(setCurrentChannel(channel));
     };
 
 

@@ -1,16 +1,16 @@
 import { Avatar } from '@material-ui/core';
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { HeartIcon, LogoutIcon } from '../icons/Icon';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
+import { setCurrentPost } from '../store/actions/post';
 
 const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }
     return new Date(dateString).toLocaleDateString(undefined, options)
 }
-
 
 
 
@@ -44,13 +44,22 @@ export const PostItem = ({ postData }) => {
         firebase.database().ref('users/' + postData.userId + '/userPostKey/').child(postData.postKey).child('postData').update(newData);
     }
 
+    const dispatch = useDispatch();
+    const currentPost = useSelector((state) => state.channels.post);
+
+
+    const setActivePost = (post) => {
+        dispatch(setCurrentPost(post));
+    };
 
 
 
 
     return (
         <section className="border-b border-gray-extraligth ">
-            <article className="flex space-x-3 px-4 pt-3 pb-2" >
+            <article className="flex space-x-3 px-4 pt-3 pb-2 cursor-pointer"
+                onClick={() => setActivePost({ postData })}
+            >
                 <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
                 <div className="flex-1">
                     <div className="flex  items-center text-sm">

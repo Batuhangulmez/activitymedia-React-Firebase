@@ -1,16 +1,14 @@
 import * as types from "../actions/types";
 
 
-const initialState = {
-    currentPost: "",
-};
 
-export default (state = initialState, action) => {
+
+export default (state, action) => {
     switch (action.type) {
         case types.SET_CURRENT_POST:
             return {
                 ...state,
-                currnetPost: action.payload,
+                currentPost: action.payload,
             }
 
         default:

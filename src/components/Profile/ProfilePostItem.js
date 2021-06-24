@@ -1,11 +1,12 @@
 import { Avatar } from '@material-ui/core';
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
-
+import Dialog from '@material-ui/core/Dialog';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import { HeartIcon, LogoutIcon } from '../../icons/Icon';
+import { setCurrentPost } from '../../store/actions/post';
 
 const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }
@@ -20,6 +21,8 @@ export const ProfilePostItem = ({ postData }) => {
     const firebase = useFirebase();
     const rootRef = firebase.database().ref('Timeline');
     const currentUserUid = useSelector(state => state.firebase.auth.uid);
+    const [open, setOpen] = useState(false)
+
 
 
     const deletepost = () => {
@@ -52,9 +55,21 @@ export const ProfilePostItem = ({ postData }) => {
     }
 
 
+    const dispatch = useDispatch();
+    const currentPost = useSelector((state) => state.channels.post);
+
+
+    const setActivePost = (post) => {
+        dispatch(setCurrentPost(post));
+    };
+
+
+
     return (
         <section className="border-b border-gray-extraligth ">
-            <article className="flex space-x-3  px-4 pt-3 pb-2" >
+            <article className="flex space-x-3  px-4 pt-3 pb-2 cursor-pointer"
+                onClick={() => setActivePost({ postData })}
+            >
                 <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
                 <div className="flex-1">
                     <div className="flex  items-center text-sm">
@@ -77,8 +92,8 @@ export const ProfilePostItem = ({ postData }) => {
                         <HeartIcon />
                     </Badge>
                 </IconButton>
-
             </div>
+
         </section>
     )
 };
