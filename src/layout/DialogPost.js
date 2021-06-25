@@ -65,7 +65,7 @@ export const DialogPost = (postData) => {
     return (
         <Dialog open={open} onClose={handleClose}>
             <section style={{ minWidth: 600 }}>
-                <main className=" flex flex-col border-r border-l min-w-min mx-2 ">
+                <main className=" flex flex-col  min-w-min mx-2 ">
                     <div className="font-bold text-xl border-b p-2">Gönderi</div>
                     <div className="shadow-lg border-gray-ligth rounded-b-3xl">
 

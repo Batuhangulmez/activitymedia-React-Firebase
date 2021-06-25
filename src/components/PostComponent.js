@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { CancelIcon, LogoutIcon } from '../icons/Icon';
 
@@ -15,7 +16,7 @@ export const PostComponent = (key) => {
         name = snapshot.val().name
         avatar = snapshot.val().avatar
     });
-
+    const currentId = useSelector(state => state.firebase.auth.uid)
 
     const deletepost = () => {
         firebase.database().ref('/Timeline/' + postKey + '/postData/commet/').child(commetID).remove();
@@ -39,9 +40,12 @@ export const PostComponent = (key) => {
                             {data.commetContent}
                         </p>
                     </div>
-                    <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
-                        <CancelIcon />
-                    </div>
+                    {
+                        userID == currentId ?
+                            <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
+                                <CancelIcon />
+                            </div> : null
+                    }
                 </div>
 
             </main>

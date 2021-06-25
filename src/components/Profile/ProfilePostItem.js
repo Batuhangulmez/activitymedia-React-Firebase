@@ -5,7 +5,7 @@ import { useFirebase } from 'react-redux-firebase';
 import Dialog from '@material-ui/core/Dialog';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
-import { CancelIcon, HeartIcon, LogoutIcon } from '../../icons/Icon';
+import { CancelIcon, CommetIcon, HeartIcon, LogoutIcon } from '../../icons/Icon';
 import { setCurrentPost } from '../../store/actions/post';
 
 const formatDate = (dateString) => {
@@ -22,7 +22,6 @@ export const ProfilePostItem = ({ postData }) => {
     const rootRef = firebase.database().ref('Timeline');
     const currentUserUid = useSelector(state => state.firebase.auth.uid);
     const [open, setOpen] = useState(false)
-
 
 
     const deletepost = () => {
@@ -72,12 +71,9 @@ export const ProfilePostItem = ({ postData }) => {
             >
                 <img className="w-11 h-11 rounded-full" src={postData.avatar} alt="Profile" />
                 <div className="flex-1">
-                    <div className="flex  items-center text-sm">
-                        <span className="ml-2 font-bold capitalize">{postData.name}</span>
-                        <span className="ml-2">
-                            {formatDate(postData.timestamp)}
-                        </span>
-                        <div className="flex justify-items-stretch cursor-pointer" onClick={() => deletepost()} >
+                    <div className="flex  justify-between items-center text-sm">
+                        <span className="flex ml-2 font-bold capitalize">{postData.name}<p className="ml-2 font-normal"> {formatDate(postData.timestamp)}</p></span>
+                        <div className="items-center  cursor-pointer" onClick={() => deletepost()} >
                             <CancelIcon />
                         </div>
                     </div>
@@ -92,6 +88,13 @@ export const ProfilePostItem = ({ postData }) => {
                         <HeartIcon />
                     </Badge>
                 </IconButton>
+                <IconButton size="small" onClick={() => setActivePost({ postData })}>
+                    <Badge color="secondary">
+                        <CommetIcon />
+                    </Badge>
+                </IconButton>
+
+
             </div>
 
         </section>

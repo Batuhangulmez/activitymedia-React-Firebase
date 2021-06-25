@@ -2,7 +2,7 @@ import { Avatar } from '@material-ui/core';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
-import { HeartIcon, LogoutIcon } from '../icons/Icon';
+import { CommetIcon, HeartIcon, LogoutIcon } from '../icons/Icon';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import { setCurrentPost } from '../store/actions/post';
@@ -79,6 +79,11 @@ export const PostItem = ({ postData }) => {
                 <IconButton size="small" onClick={sendStar}>
                     <Badge badgeContent={postData.star.length - 1} color="secondary">
                         <HeartIcon />
+                    </Badge>
+                </IconButton>
+                <IconButton size="small" onClick={() => setActivePost({ postData })}>
+                    <Badge color="secondary">
+                        <CommetIcon />
                     </Badge>
                 </IconButton>
             </div>
