@@ -21,7 +21,8 @@ const TextBox = () => {
             Content: Content,
             timestamp: firebase.database.ServerValue.TIMESTAMP,
             star: Star,
-            postKey: newPostKey
+            postKey: newPostKey,
+            commet: ''
         };
 
         firebase.database().ref('Timeline/' + newPostKey).set({

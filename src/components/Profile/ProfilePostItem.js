@@ -5,7 +5,7 @@ import { useFirebase } from 'react-redux-firebase';
 import Dialog from '@material-ui/core/Dialog';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
-import { HeartIcon, LogoutIcon } from '../../icons/Icon';
+import { CancelIcon, HeartIcon, LogoutIcon } from '../../icons/Icon';
 import { setCurrentPost } from '../../store/actions/post';
 
 const formatDate = (dateString) => {
@@ -77,11 +77,11 @@ export const ProfilePostItem = ({ postData }) => {
                         <span className="ml-2">
                             {formatDate(postData.timestamp)}
                         </span>
-                        <div className="flex space-x-1 cursor-pointer" onClick={() => deletepost()} >
-                            <LogoutIcon />
+                        <div className="flex justify-items-stretch cursor-pointer" onClick={() => deletepost()} >
+                            <CancelIcon />
                         </div>
                     </div>
-                    <p className="mt-4 text-sm text-left ">
+                    <p className=" mt-4 text-sm text-left ">
                         {postData.Content}
                     </p>
                 </div>
