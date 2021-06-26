@@ -19,7 +19,17 @@ module.exports = {
           extraligth: "#E1E8ED",
           lightest: "#F5F8FA",
         },
-        black: "#14171A",
+        tema: {
+          bg: '#F2ECE7',
+          red: '#DC3029',
+          yellow: '#fcca48',
+          green: '#8ececa',
+          blue: '#9282f0',
+        },
+        add: {
+          base: '#FF2B49',
+          dark: '#C6BAA8',
+        }
       },
     },
   },

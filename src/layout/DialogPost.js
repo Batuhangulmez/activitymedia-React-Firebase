@@ -5,6 +5,7 @@ import { setCurrentPost } from '../store/actions/post';
 import { isEmpty, useFirebase } from 'react-redux-firebase';
 import { PostComponent } from '../components/PostComponent';
 import { CommetIcon } from '../icons/Icon';
+import { Snackbar } from '@material-ui/core';
 
 
 const formatDate = (dateString) => {
@@ -25,7 +26,7 @@ export const DialogPost = (postData) => {
 
     const [open, setOpen] = useState(false);
     const [commet, setCommet] = useState('');
-
+    const [PostAdd, setPostAdd] = useState(false)
 
 
     useEffect(() => {
@@ -59,12 +60,13 @@ export const DialogPost = (postData) => {
             const newCommetKey = firebase.database().ref('Timeline/' + postKey + '/postData').child('commet').push().key;
             firebase.database().ref('Timeline/' + postKey + '/postData').child('commet').child(newCommetKey).update(newCommet);
             firebase.database().ref('users/' + userId + '/userPostKey/' + postKey + '/postData/').child('commet').child(newCommetKey).update(newCommet);
+            setPostAdd(true);
         }
     }
 
     return (
         <Dialog open={open} onClose={handleClose}>
-            <section style={{ minWidth: 600 }}>
+            <section style={{ minWidth: 555 }}>
                 <main className=" flex flex-col  min-w-min mx-2 ">
                     <div className="font-bold text-xl border-b p-2">Gönderi</div>
                     <div className="shadow-lg border-gray-ligth rounded-b-3xl">
@@ -84,7 +86,7 @@ export const DialogPost = (postData) => {
                             </div>
                         </article >
                     </div>
-                    <main className="flex flex-col ">
+                    <main className="flex flex-col max-w-xl ">
                         {
                             !isEmpty(controlCommet) ?
                                 controlCommet.map((key, index) => (
@@ -119,7 +121,16 @@ export const DialogPost = (postData) => {
                         </div>
                     </section>
                 </main>
-
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={PostAdd}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                    message="Post yazma işlemi tamamlandı"
+                />
             </section>
         </Dialog >
     )

@@ -16,9 +16,9 @@ export const UserBox = () => {
 
 
     return (
-        <div className="flex justify-around items-center mb-6 hover:bg-primary-lightest cursor-pointer border rounded-tl-3xl transform transition-colors duration-200 rounded rounded-br-3xl py-2 px-4">
+        <div className="flex justify-around items-center hover:scale-105 mb-6 shadow-xl bg-tema-green cursor-pointer  rounded-tl-3xl transform transition duration-200 rounded rounded-br-3xl py-2 px-4">
             <img className="w-11 h-11 rounded-full"
-                src="https://pbs.twimg.com/profile_images/1147599003263148032/LbA5K3c4_400x400.jpg" alt="Profile" />
+                src={profile.avatar} alt="Profile" />
             <div className="flex flex-col ">
                 <span className="font-bold text-sm capitalize ">{profile.name}</span>
                 <span className="text-xs text-gray-dark">{profile.title}</span>

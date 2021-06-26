@@ -3,21 +3,22 @@ import { StarIcon } from '../icons/Icon';
 import TextBox from '../components/TextBox';
 import { Divider } from '../components/Divider';
 import { PostList } from '../components/PostList';
+import { useSelector } from 'react-redux';
 
 
 export const Content = () => {
+    const avatar = useSelector(state => state.firebase.profile.avatar)
     return (
-        <main className=" flex flex-col border-r border-l " style={{ flex: 3 }}>
-            <header className=" bg-white flex justify-between items-center p-4 border-b border-gray-extraligth">
-                <span className="font-bold text-xl">Home</span>
+        <main className=" flex flex-col  " style={{ flex: 3 }}>
+            <header className=" bg-tema-yellow flex justify-between items-center p-4 rounded-2xl shadow-lg ">
+                <span className="text-gray-50 font-bold text-xl">Home</span>
                 <StarIcon />
             </header>
-            <div className="flex px-4 py-3 space-x-4">
+            <div className="flex w-11/12 mr-auto ml-auto px-4 py-3 space-x-4 shadow-lg bg-add-dark bg-opacity-40 border-add-dark rounded-bl-3xl rounded-br-3xl border-l-2 border-b-2 border-r-2">
                 <img className="w-11 h-11 rounded-full"
-                    src="https://pbs.twimg.com/profile_images/1147599003263148032/LbA5K3c4_400x400.jpg" alt="Profile" />
+                    src={avatar} alt="Profile" />
                 <TextBox />
             </div>
-            <Divider />
             <PostList />
         </main>
     );

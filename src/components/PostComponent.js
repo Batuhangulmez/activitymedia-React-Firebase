@@ -1,4 +1,5 @@
-import React from 'react'
+import { Snackbar } from '@material-ui/core';
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useFirebase } from 'react-redux-firebase';
 import { CancelIcon, LogoutIcon } from '../icons/Icon';
@@ -12,6 +13,9 @@ export const PostComponent = (key) => {
     const user = firebase.database().ref('users').child(userID)
     let avatar;
     let name;
+
+    const [DeleteMsg, setDeleteMsg] = useState(false);
+
     user.on('value', snapshot => {
         name = snapshot.val().name
         avatar = snapshot.val().avatar
@@ -21,16 +25,25 @@ export const PostComponent = (key) => {
     const deletepost = () => {
         firebase.database().ref('/Timeline/' + postKey + '/postData/commet/').child(commetID).remove();
         firebase.database().ref('users/' + userID + '/userPostKey/' + postKey + '/postData/commet/').child(commetID).remove();
+        handleOpen();
     };
 
+    const handleOpen = () => {
+        setDeleteMsg(true);
+    }
+
+    const handleClose = () => {
+        setDeleteMsg(false);
+
+    }
     return (
         <section>
-            <main className="flex flex-row ">
+            <main className="flex flex-row  " style={{ width: 576 }}>
 
-                <div className="w-8 border-r-8 border-gray-dark" />
-                <div className="flex space-x-3 px-4 pt-3 pb-2">
+                <div className="w-3 ml-4 border-r-8 border-gray-dark" />
+                <div className="flex  space-x-3 px-4 pt-3 pb-2 " style={{ width: 550 }}>
 
-                    <img className="w-11 h-11 rounded-full" src={avatar} alt="Profile" />
+                    <img className="flex w-11 h-11 rounded-full" src={avatar} alt="Profile" />
                     <div className="flex-1">
                         <div className="flex  items-center text-sm">
                             <span className="ml-2 font-bold capitalize">{name}</span>
@@ -50,7 +63,16 @@ export const PostComponent = (key) => {
 
             </main>
 
-
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={DeleteMsg}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message="Post silme işlemi tamamlandı"
+            />
         </section>
     )
 }

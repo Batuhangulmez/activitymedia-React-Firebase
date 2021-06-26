@@ -20,7 +20,6 @@ const App = () => {
 
       <Sidebar />
       {currentChannel == "Home" ? <Content /> : currentChannel.name == "Home" ? <Content /> : <ProfileContent />}
-      <Widgets />
       {!isEmpty(currentPost) ? <DialogPost {...currentPost.postData} /> : null}
     </Container>
   )

@@ -43,7 +43,9 @@ const Root = () => {
   return (
     <Switch>
       <PrivateRoute exact path="/">
-        <App />
+        <div className="bg-tema-bg">
+          <App />
+        </div>
       </PrivateRoute>
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={Login} />

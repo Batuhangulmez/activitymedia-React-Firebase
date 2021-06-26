@@ -6,7 +6,9 @@ import Dialog from '@material-ui/core/Dialog';
 import {
     TitleIcon,
     EmailIcon,
-    ProfilIcon
+    ProfilIcon,
+    StarIcon,
+    ProfilCardIcon
 } from "../../icons/Icon";
 import { isEmpty, useFirebase } from 'react-redux-firebase';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -81,24 +83,31 @@ export const ProfileContent = () => {
          */
 
     return (
-        <main className=" flex flex-col border-r border-l " style={{ flex: 3 }}>
-            <section className="flex flex-col py-3 items-center ">
-                <div className=" border border-gray-ligth rounded-xl p-4 bg-gray-lightest shadow-md ">
+        <main className=" flex flex-col" style={{ flex: 3 }}>
+            <header className=" bg-tema-green flex justify-between items-center p-4 rounded-2xl shadow-lg ">
+                <span className="text-gray-50 font-bold text-xl">Profil</span>
+                <ProfilCardIcon />
+            </header>
+            <section className="w-11/12 mr-auto ml-auto rounded-bl-3xl rounded-br-3xl  bg-tema-green bg-opacity-40 border-l-2 border-b-2 border-r-2 border-tema-green">
 
-                    <img className="w-16 h-16 rounded-xl mr-auto ml-auto"
-                        src={avatar} alt="Profile" />
-                    <div className="flex justify-center text-center uppercase font-bold mt-2">{name}<p className="text-xs font-light ml-2">{title}</p></div>
-                    <div className="text-center text-sm text-gray-600 mt-2 font-thin">{email}</div>
-                </div>
+                <section className="flex flex-col py-3 items-center  ">
+                    <div className=" border border-gray-ligth rounded-xl p-4 bg-gray-lightest shadow-md ">
 
-            </section>
-            <section className="flex justify-end ">
-                <button className=" hover:border-gray-dark border-gray-ligth  transform hover:scale-105 transition duration-500 border rounded-tl-3xl rounded rounded-br-3xl px-3 py-1 mr-2
-                font-medium bg-gray-lightest shadow-md"
-                    onClick={handleClickOpen}
-                >
-                    Profil Düzenle
-                </button>
+                        <img className="w-16 h-16 rounded-xl mr-auto ml-auto"
+                            src={avatar} alt="Profile" />
+                        <div className="flex justify-center text-center uppercase font-bold mt-2">{name}<p className="text-xs font-light ml-2">{title}</p></div>
+                        <div className="text-center text-sm text-gray-600 mt-2 font-thin">{email}</div>
+                    </div>
+
+                </section>
+                <section className="flex justify-end ">
+                    <button className=" hover:border-gray-dark border-gray-ligth  transform hover:scale-105 transition duration-500 border rounded-tl-3xl rounded rounded-br-3xl px-3 py-1 mr-2
+                font-medium bg-gray-lightest shadow-md mb-2 "
+                        onClick={handleClickOpen}
+                    >
+                        Profil Düzenle
+                    </button>
+                </section>
                 <Dialog open={open} onClose={handleClose}>
                     <section className="p-5 space-y-4 bg-gray-lightest">
                         <h2 className="font-bold">Profili Düzenle</h2>
@@ -143,8 +152,7 @@ export const ProfileContent = () => {
                     </section>
                 </Dialog>
             </section>
-            <div className="text-center shadow-lg border-gray-ligth rounded-b-3xl  my-1 text-lg font-bold " >PAYLAŞIMLAR</div>
-            <Divider />
+            <div className="flex justify-center mr-auto ml-auto w-1/4 text-center border-tema-red rounded-full bg-tema-red bg-opacity-40 border-b  my-1 text-lg font-bold " >PAYLAŞIMLAR</div>
             <ProfilePostList />
             <Snackbar
                 anchorOrigin={{

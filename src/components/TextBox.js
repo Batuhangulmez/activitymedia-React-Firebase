@@ -39,7 +39,7 @@ const TextBox = () => {
     return (
         <div className="flex flex-col mt-2  px-2 flex-1">
             <textarea
-                className="w-full text-xl placeholder-gray-dark outline-none overflow-auto  resize-none bg-transparent"
+                className="w-full text-xl  placeholder-gray-dark outline-none overflow-auto  resize-none bg-transparent"
                 placeholder="Lorem impuls"
                 onChange={e => setContent(e.target.value)}
                 value={Content}
