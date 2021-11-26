@@ -12,11 +12,11 @@
 
 ![home](https://user-images.githubusercontent.com/74783650/138891731-6e78f4ab-89d8-4103-87bd-34b7855f70ac.jpg)
 
-### `Profil Page `
+### `Profile Page `
 
 ![Profil](https://user-images.githubusercontent.com/74783650/138892021-17ff8e1d-3da1-4338-8163-6440169eb566.jpg)
 
-### `Profil Modal`
+### `Profile Modal`
 
 ![Profil2](https://user-images.githubusercontent.com/74783650/138892177-564acddd-4461-4f4e-944d-794d17b5d437.jpg)
 
